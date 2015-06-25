@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4E7D57DB-FD0F-4B0D-BB04-866073376CBB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MockMap</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4918BD0FEFBDEDDFB9911C879DC384E124CCC4AF</key>
+		<string>https://github.com/LeChinhNhan1108/MockMap.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MockMap.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4918BD0FEFBDEDDFB9911C879DC384E124CCC4AF</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/LeChinhNhan1108/MockMap.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4918BD0FEFBDEDDFB9911C879DC384E124CCC4AF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4918BD0FEFBDEDDFB9911C879DC384E124CCC4AF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MockMap</string>
+		</dict>
+	</array>
+</dict>
+</plist>

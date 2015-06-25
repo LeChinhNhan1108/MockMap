@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		94117B791B3C329500937FC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94117B781B3C329500937FC3 /* AppDelegate.swift */; };
-		94117B7B1B3C329500937FC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94117B7A1B3C329500937FC3 /* ViewController.swift */; };
 		94117B7E1B3C329500937FC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94117B7C1B3C329500937FC3 /* Main.storyboard */; };
 		94117B801B3C329500937FC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94117B7F1B3C329500937FC3 /* Images.xcassets */; };
 		94117B831B3C329500937FC3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94117B811B3C329500937FC3 /* LaunchScreen.xib */; };
 		94117B8F1B3C329500937FC3 /* MockMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94117B8E1B3C329500937FC3 /* MockMapTests.swift */; };
+		946ACE091B3C35CC00464F8C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ACE081B3C35CC00464F8C /* MapViewController.swift */; };
+		EF9AF44EB23FCD3C1E9E1EA6 /* libPods-MockMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF8CCB120F40930D36B9FC08 /* libPods-MockMap.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +27,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48B00E38CC7D096087BBD2E9 /* Pods-MockMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MockMap/Pods-MockMap.debug.xcconfig"; sourceTree = "<group>"; };
 		94117B731B3C329500937FC3 /* MockMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94117B771B3C329500937FC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94117B781B3C329500937FC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		94117B7A1B3C329500937FC3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		94117B7D1B3C329500937FC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		94117B7F1B3C329500937FC3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		94117B821B3C329500937FC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		94117B881B3C329500937FC3 /* MockMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MockMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94117B8D1B3C329500937FC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94117B8E1B3C329500937FC3 /* MockMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMapTests.swift; sourceTree = "<group>"; };
+		946ACE051B3C33E600464F8C /* MockMap-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockMap-Bridging-Header.h"; sourceTree = "<group>"; };
+		946ACE081B3C35CC00464F8C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DF8CCB120F40930D36B9FC08 /* libPods-MockMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MockMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F79B3207321F3F4B02C2C4B3 /* Pods-MockMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-MockMap/Pods-MockMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF9AF44EB23FCD3C1E9E1EA6 /* libPods-MockMap.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,12 +62,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4EE3ED63B04D8E5D2F8E26DD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				48B00E38CC7D096087BBD2E9 /* Pods-MockMap.debug.xcconfig */,
+				F79B3207321F3F4B02C2C4B3 /* Pods-MockMap.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		94117B6A1B3C329500937FC3 = {
 			isa = PBXGroup;
 			children = (
 				94117B751B3C329500937FC3 /* MockMap */,
 				94117B8B1B3C329500937FC3 /* MockMapTests */,
 				94117B741B3C329500937FC3 /* Products */,
+				4EE3ED63B04D8E5D2F8E26DD /* Pods */,
+				CD63D5ED92251852D8C6D1EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,11 +95,12 @@
 			isa = PBXGroup;
 			children = (
 				94117B781B3C329500937FC3 /* AppDelegate.swift */,
-				94117B7A1B3C329500937FC3 /* ViewController.swift */,
+				946ACE081B3C35CC00464F8C /* MapViewController.swift */,
 				94117B7C1B3C329500937FC3 /* Main.storyboard */,
 				94117B7F1B3C329500937FC3 /* Images.xcassets */,
 				94117B811B3C329500937FC3 /* LaunchScreen.xib */,
 				94117B761B3C329500937FC3 /* Supporting Files */,
+				946ACE051B3C33E600464F8C /* MockMap-Bridging-Header.h */,
 			);
 			path = MockMap;
 			sourceTree = "<group>";
@@ -112,6 +130,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CD63D5ED92251852D8C6D1EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF8CCB120F40930D36B9FC08 /* libPods-MockMap.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +145,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 94117B921B3C329500937FC3 /* Build configuration list for PBXNativeTarget "MockMap" */;
 			buildPhases = (
+				32F72C95F20EEDEB45480485 /* Check Pods Manifest.lock */,
 				94117B6F1B3C329500937FC3 /* Sources */,
 				94117B701B3C329500937FC3 /* Frameworks */,
 				94117B711B3C329500937FC3 /* Resources */,
+				387658BFBABE62D8C697B379 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -207,13 +235,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		32F72C95F20EEDEB45480485 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		387658BFBABE62D8C697B379 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MockMap/Pods-MockMap-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		94117B6F1B3C329500937FC3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94117B7B1B3C329500937FC3 /* ViewController.swift in Sources */,
 				94117B791B3C329500937FC3 /* AppDelegate.swift in Sources */,
+				946ACE091B3C35CC00464F8C /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,21 +395,28 @@
 		};
 		94117B931B3C329500937FC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48B00E38CC7D096087BBD2E9 /* Pods-MockMap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MockMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MockMap/MockMap-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		94117B941B3C329500937FC3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F79B3207321F3F4B02C2C4B3 /* Pods-MockMap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MockMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MockMap/MockMap-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -405,6 +473,7 @@
 				94117B941B3C329500937FC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94117B951B3C329500937FC3 /* Build configuration list for PBXNativeTarget "MockMapTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +482,7 @@
 				94117B971B3C329500937FC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
