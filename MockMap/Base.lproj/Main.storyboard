@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cen-FR-lT9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--Map-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="MapViewController" customModule="MockMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -40,43 +41,50 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="CCX-vP-Imz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <color key="textColor" red="0.2039215714" green="0.28627452250000002" blue="0.36862745879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact">
+                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                </variation>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wik-57-xce" customClass="GMSMapView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDC-Dy-48I" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wcm-L0-dJD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="9LM-kT-QIX"/>
+                            <constraint firstItem="RDC-Dy-48I" firstAttribute="leading" secondItem="wcm-L0-dJD" secondAttribute="leading" id="CXV-Vl-Bc9"/>
+                            <constraint firstItem="RDC-Dy-48I" firstAttribute="trailing" secondItem="wcm-L0-dJD" secondAttribute="trailing" id="DNd-eJ-IYa"/>
+                            <constraint firstItem="dlI-2I-4mm" firstAttribute="top" secondItem="RDC-Dy-48I" secondAttribute="bottom" id="Fjm-WR-WeI"/>
                             <constraint firstAttribute="trailing" secondItem="wcm-L0-dJD" secondAttribute="trailing" id="H2F-te-c2r"/>
+                            <constraint firstItem="wcm-L0-dJD" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="40" id="HkO-3H-Z8d">
+                                <variation key="widthClass=compact" constant="60"/>
+                            </constraint>
                             <constraint firstItem="wcm-L0-dJD" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="LmX-7C-Oux"/>
+                            <constraint firstItem="RDC-Dy-48I" firstAttribute="top" secondItem="wcm-L0-dJD" secondAttribute="bottom" id="Rjb-3c-Tzx"/>
                             <constraint firstItem="dlI-2I-4mm" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="SSp-5I-B4t"/>
-                            <constraint firstItem="Wik-57-xce" firstAttribute="trailing" secondItem="wcm-L0-dJD" secondAttribute="trailing" id="ZJ6-R6-IcO"/>
-                            <constraint firstItem="dlI-2I-4mm" firstAttribute="top" secondItem="Wik-57-xce" secondAttribute="bottom" constant="1" id="aEL-MZ-ye1"/>
-                            <constraint firstItem="Wik-57-xce" firstAttribute="top" secondItem="wcm-L0-dJD" secondAttribute="bottom" id="ger-Z5-ZBx"/>
                             <constraint firstItem="dlI-2I-4mm" firstAttribute="leading" secondItem="wcm-L0-dJD" secondAttribute="leading" id="iwt-kq-wQd"/>
-                            <constraint firstItem="Wik-57-xce" firstAttribute="leading" secondItem="wcm-L0-dJD" secondAttribute="leading" id="vC1-YJ-wqc"/>
                             <constraint firstItem="dlI-2I-4mm" firstAttribute="trailing" secondItem="wcm-L0-dJD" secondAttribute="trailing" id="wSX-1N-xNt"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="wcm-L0-dJD"/>
                                 <exclude reference="dlI-2I-4mm"/>
-                                <exclude reference="Wik-57-xce"/>
+                                <exclude reference="RDC-Dy-48I"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="9LM-kT-QIX"/>
                                 <exclude reference="H2F-te-c2r"/>
+                                <exclude reference="HkO-3H-Z8d"/>
                                 <exclude reference="LmX-7C-Oux"/>
-                                <exclude reference="ZJ6-R6-IcO"/>
-                                <exclude reference="ger-Z5-ZBx"/>
-                                <exclude reference="vC1-YJ-wqc"/>
+                                <exclude reference="CXV-Vl-Bc9"/>
+                                <exclude reference="DNd-eJ-IYa"/>
+                                <exclude reference="Rjb-3c-Tzx"/>
+                                <exclude reference="Fjm-WR-WeI"/>
                                 <exclude reference="SSp-5I-B4t"/>
-                                <exclude reference="aEL-MZ-ye1"/>
                                 <exclude reference="iwt-kq-wQd"/>
                                 <exclude reference="wSX-1N-xNt"/>
                             </mask>
@@ -85,27 +93,48 @@
                             <mask key="subviews">
                                 <include reference="wcm-L0-dJD"/>
                                 <include reference="dlI-2I-4mm"/>
-                                <include reference="Wik-57-xce"/>
+                                <include reference="RDC-Dy-48I"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="9LM-kT-QIX"/>
                                 <include reference="H2F-te-c2r"/>
-                                <include reference="LmX-7C-Oux"/>
-                                <include reference="ZJ6-R6-IcO"/>
-                                <include reference="ger-Z5-ZBx"/>
-                                <include reference="vC1-YJ-wqc"/>
+                                <include reference="HkO-3H-Z8d"/>
+                                <exclude reference="LmX-7C-Oux"/>
+                                <include reference="CXV-Vl-Bc9"/>
+                                <include reference="DNd-eJ-IYa"/>
+                                <include reference="Rjb-3c-Tzx"/>
+                                <include reference="Fjm-WR-WeI"/>
                                 <include reference="SSp-5I-B4t"/>
-                                <include reference="aEL-MZ-ye1"/>
                                 <include reference="iwt-kq-wQd"/>
                                 <include reference="wSX-1N-xNt"/>
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Map" id="aYV-2G-Fr4"/>
                     <connections>
-                        <outlet property="mapView" destination="Wik-57-xce" id="Rdc-ah-BVR"/>
+                        <outlet property="lblInfo" destination="dlI-2I-4mm" id="Ld2-Z2-cmV"/>
+                        <outlet property="mapView" destination="RDC-Dy-48I" id="xZr-OU-AZy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1056" y="136"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="E7v-4k-xyz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cen-FR-lT9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="weC-J2-9dl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="bky-bK-ud1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gR5-pc-Rz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138" y="136"/>
         </scene>

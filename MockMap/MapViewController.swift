@@ -13,6 +13,7 @@ class MapViewController : UIViewController, CLLocationManagerDelegate {
     
 
     @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var lblInfo: UILabel!
 
     let locationManager = CLLocationManager()
     var googleDataProvider = GoogleDataProvider()
@@ -20,12 +21,7 @@ class MapViewController : UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
-        
-        googleDataProvider.geocodeLatLng(40.714224, lng: -73.961452) { (status, success) -> Void in
             
-        }
-        
-
     }
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -65,5 +61,71 @@ class MapViewController : UIViewController, CLLocationManagerDelegate {
     }
     @IBAction func directionButtonDidTouch(sender: UIBarButtonItem) {
         
+        var alertController = UIAlertController(title: "Enter place and destination", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        var tfPlace: UITextField?
+        var tfDestination: UITextField?
+
+        alertController.addTextFieldWithConfigurationHandler { (place) -> Void in
+            place.placeholder = "Origin"
+            tfPlace = place
+        }
+        
+        alertController.addTextFieldWithConfigurationHandler { (destination) -> Void in
+            destination.placeholder = "Destination"
+            tfDestination = destination
+            destination.layoutMargins = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+            
+        }
+        
+        // Create the actions.
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { action in
+            
+        }
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default) { action in
+
+            let from_address = tfPlace?.text
+            let to_address = tfDestination?.text
+            
+            self.googleDataProvider.geocodeAddress(from_address!, completionHander: { (status, success) -> Void in
+                
+                println("GeoAddress \(status)")
+                
+                let lat = self.googleDataProvider.lookupData["lat"] as Double
+                let lng = self.googleDataProvider.lookupData["lng"] as Double
+                
+                let location = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+                self.mapView.camera = GMSCameraPosition(target: location, zoom: 15, bearing: 0, viewingAngle: 0)
+            })
+
+            self.googleDataProvider.directionFromAddresses(from_address!, to_address: to_address!, completionHander: { (status, success) -> Void in
+                
+                println("Direction \(status)")
+                
+                if (!success){
+                    return
+                }
+                
+                self.mapView.clear()
+                
+                let distance: AnyObject?  = self.googleDataProvider.lookupData["distance"] as String
+                let duration: AnyObject?  = self.googleDataProvider.lookupData["duration"] as String
+                let points  = self.googleDataProvider.lookupData["points"] as String
+                
+                self.lblInfo.text = "Distance \(distance?.description), Duration \(duration?.description)"
+                
+                var line = GMSPolyline(path: GMSPath(fromEncodedPath: points))
+                line.map = self.mapView
+
+            })
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        
+        
+        presentViewController(alertController, animated: true, completion: nil)
+
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D1CBA63CBF159CEAAEC79EC /* Pods_MockMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3C055C49BA0B4E4F6BF76F /* Pods_MockMap.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		94117B791B3C329500937FC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94117B781B3C329500937FC3 /* AppDelegate.swift */; };
 		94117B7E1B3C329500937FC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94117B7C1B3C329500937FC3 /* Main.storyboard */; };
 		94117B801B3C329500937FC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94117B7F1B3C329500937FC3 /* Images.xcassets */; };
@@ -14,7 +15,6 @@
 		94117B8F1B3C329500937FC3 /* MockMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94117B8E1B3C329500937FC3 /* MockMapTests.swift */; };
 		946ACE091B3C35CC00464F8C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ACE081B3C35CC00464F8C /* MapViewController.swift */; };
 		946ACE0B1B3C3A8000464F8C /* GoogleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ACE0A1B3C3A8000464F8C /* GoogleDataProvider.swift */; };
-		EF9AF44EB23FCD3C1E9E1EA6 /* libPods-MockMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF8CCB120F40930D36B9FC08 /* libPods-MockMap.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		48B00E38CC7D096087BBD2E9 /* Pods-MockMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MockMap/Pods-MockMap.debug.xcconfig"; sourceTree = "<group>"; };
+		6B3C055C49BA0B4E4F6BF76F /* Pods_MockMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94117B731B3C329500937FC3 /* MockMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94117B771B3C329500937FC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94117B781B3C329500937FC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +42,6 @@
 		946ACE051B3C33E600464F8C /* MockMap-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockMap-Bridging-Header.h"; sourceTree = "<group>"; };
 		946ACE081B3C35CC00464F8C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		946ACE0A1B3C3A8000464F8C /* GoogleDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleDataProvider.swift; sourceTree = "<group>"; };
-		DF8CCB120F40930D36B9FC08 /* libPods-MockMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MockMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F79B3207321F3F4B02C2C4B3 /* Pods-MockMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-MockMap/Pods-MockMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF9AF44EB23FCD3C1E9E1EA6 /* libPods-MockMap.a in Frameworks */,
+				7D1CBA63CBF159CEAAEC79EC /* Pods_MockMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +136,7 @@
 		CD63D5ED92251852D8C6D1EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DF8CCB120F40930D36B9FC08 /* libPods-MockMap.a */,
+				6B3C055C49BA0B4E4F6BF76F /* Pods_MockMap.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,6 +153,7 @@
 				94117B701B3C329500937FC3 /* Frameworks */,
 				94117B711B3C329500937FC3 /* Resources */,
 				387658BFBABE62D8C697B379 /* Copy Pods Resources */,
+				FF211A903D6D08298DA5E3D0 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -267,6 +268,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MockMap/Pods-MockMap-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF211A903D6D08298DA5E3D0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MockMap/Pods-MockMap-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
