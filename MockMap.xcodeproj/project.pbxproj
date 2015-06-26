@@ -13,6 +13,7 @@
 		94117B831B3C329500937FC3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94117B811B3C329500937FC3 /* LaunchScreen.xib */; };
 		94117B8F1B3C329500937FC3 /* MockMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94117B8E1B3C329500937FC3 /* MockMapTests.swift */; };
 		946ACE091B3C35CC00464F8C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ACE081B3C35CC00464F8C /* MapViewController.swift */; };
+		946ACE0B1B3C3A8000464F8C /* GoogleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946ACE0A1B3C3A8000464F8C /* GoogleDataProvider.swift */; };
 		EF9AF44EB23FCD3C1E9E1EA6 /* libPods-MockMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF8CCB120F40930D36B9FC08 /* libPods-MockMap.a */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		94117B8E1B3C329500937FC3 /* MockMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMapTests.swift; sourceTree = "<group>"; };
 		946ACE051B3C33E600464F8C /* MockMap-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockMap-Bridging-Header.h"; sourceTree = "<group>"; };
 		946ACE081B3C35CC00464F8C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		946ACE0A1B3C3A8000464F8C /* GoogleDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleDataProvider.swift; sourceTree = "<group>"; };
 		DF8CCB120F40930D36B9FC08 /* libPods-MockMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MockMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F79B3207321F3F4B02C2C4B3 /* Pods-MockMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-MockMap/Pods-MockMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,10 +98,11 @@
 			children = (
 				94117B781B3C329500937FC3 /* AppDelegate.swift */,
 				946ACE081B3C35CC00464F8C /* MapViewController.swift */,
+				946ACE0A1B3C3A8000464F8C /* GoogleDataProvider.swift */,
 				94117B7C1B3C329500937FC3 /* Main.storyboard */,
-				94117B7F1B3C329500937FC3 /* Images.xcassets */,
 				94117B811B3C329500937FC3 /* LaunchScreen.xib */,
 				94117B761B3C329500937FC3 /* Supporting Files */,
+				94117B7F1B3C329500937FC3 /* Images.xcassets */,
 				946ACE051B3C33E600464F8C /* MockMap-Bridging-Header.h */,
 			);
 			path = MockMap;
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94117B791B3C329500937FC3 /* AppDelegate.swift in Sources */,
+				946ACE0B1B3C3A8000464F8C /* GoogleDataProvider.swift in Sources */,
 				946ACE091B3C35CC00464F8C /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

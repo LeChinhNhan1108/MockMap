@@ -8,16 +8,24 @@
 
 import Foundation
 
+
 class MapViewController : UIViewController, CLLocationManagerDelegate {
     
 
     @IBOutlet weak var mapView: GMSMapView!
 
     let locationManager = CLLocationManager()
+    var googleDataProvider = GoogleDataProvider()
     
     override func viewDidLoad() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
+        
+        googleDataProvider.geocodeLatLng(40.714224, lng: -73.961452) { (status, success) -> Void in
+            
+        }
+        
+
     }
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -56,5 +64,6 @@ class MapViewController : UIViewController, CLLocationManagerDelegate {
         presentViewController(actionSheet, animated: true, completion: nil)
     }
     @IBAction func directionButtonDidTouch(sender: UIBarButtonItem) {
+        
     }
 }
