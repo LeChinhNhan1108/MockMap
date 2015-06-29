@@ -9,20 +9,27 @@
 import Foundation
 
 
-class MapViewController : UIViewController, CLLocationManagerDelegate {
+class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
 
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var lblInfo: UILabel!
 
     let locationManager = CLLocationManager()
-    var googleDataProvider = GoogleDataProvider()
+    let googleDataProvider = GoogleDataProvider()
+    var currentLocation: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
-            
+        locationManager.startUpdatingLocation()
+        
+        self.mapView.delegate = self
+        self.mapView.camera = GMSCameraPosition(target: CLLocationCoordinate2D(latitude: 10.723059, longitude: 106.7158508), zoom: 17, bearing: 0, viewingAngle: 0)
+    
     }
+
+    // MARK: Location Delegate
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if (status == CLAuthorizationStatus.AuthorizedWhenInUse){
@@ -31,8 +38,37 @@ class MapViewController : UIViewController, CLLocationManagerDelegate {
         }
     }
     
-
+    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        self.currentLocation = newLocation.coordinate
+        locationManager.stopUpdatingLocation()
+    }
     
+    // MARK: MapView delegate
+    
+    func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
+        // Clear map when set pin
+        self.mapView.clear()
+        
+        // Add a marker
+        let marker = GMSMarker(position: coordinate)
+        marker.title = "Destination"
+        marker.map = self.mapView
+
+        // Draw Routes
+        if let currentLocation = self.currentLocation{
+            self.googleDataProvider.directionFromLatLng(self.currentLocation!, destination: coordinate) { (status, success) -> Void in
+                let polyline = GMSPolyline(path: GMSPath(fromEncodedPath: self.googleDataProvider.lookupData["points"] as! String))
+                polyline.map = self.mapView
+            }
+        }
+    }
+    
+    func didTapMyLocationButtonForMapView(mapView: GMSMapView!) -> Bool {
+        locationManager.startUpdatingLocation()
+        return false
+    }
+    
+    // MARK: Button Touch
     @IBAction func mapTypeButtonDidTouch(sender: UIBarButtonItem) {
         let actionSheet = UIAlertController(title: "Map Types", message: "Select map type:", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
@@ -74,7 +110,6 @@ class MapViewController : UIViewController, CLLocationManagerDelegate {
         alertController.addTextFieldWithConfigurationHandler { (destination) -> Void in
             destination.placeholder = "Destination"
             tfDestination = destination
-            destination.layoutMargins = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
             
         }
         
@@ -92,8 +127,8 @@ class MapViewController : UIViewController, CLLocationManagerDelegate {
                 
                 println("GeoAddress \(status)")
                 
-                let lat = self.googleDataProvider.lookupData["lat"] as Double
-                let lng = self.googleDataProvider.lookupData["lng"] as Double
+                let lat = self.googleDataProvider.lookupData["lat"] as! Double
+                let lng = self.googleDataProvider.lookupData["lng"] as! Double
                 
                 let location = CLLocationCoordinate2D(latitude: lat, longitude: lng)
                 self.mapView.camera = GMSCameraPosition(target: location, zoom: 15, bearing: 0, viewingAngle: 0)
@@ -109,11 +144,11 @@ class MapViewController : UIViewController, CLLocationManagerDelegate {
                 
                 self.mapView.clear()
                 
-                let distance: AnyObject?  = self.googleDataProvider.lookupData["distance"] as String
-                let duration: AnyObject?  = self.googleDataProvider.lookupData["duration"] as String
-                let points  = self.googleDataProvider.lookupData["points"] as String
+                let distance: AnyObject?  = self.googleDataProvider.lookupData["distance"] as! String
+                let duration: AnyObject?  = self.googleDataProvider.lookupData["duration"] as! String
+                let points  = self.googleDataProvider.lookupData["points"] as! String
                 
-                self.lblInfo.text = "Distance \(distance?.description), Duration \(duration?.description)"
+                self.lblInfo.text = "Distance: \(distance as! String), Duration: \(duration as! String)"
                 
                 var line = GMSPolyline(path: GMSPath(fromEncodedPath: points))
                 line.map = self.mapView
