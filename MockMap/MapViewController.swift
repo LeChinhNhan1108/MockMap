@@ -11,10 +11,10 @@ import Foundation
 
 class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
-
+    
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var lblInfo: UILabel!
-
+    
     let locationManager = CLLocationManager()
     let googleDataProvider = GoogleDataProvider()
     var currentLocation: CLLocationCoordinate2D?
@@ -26,9 +26,9 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         self.mapView.delegate = self
         self.mapView.camera = GMSCameraPosition(target: CLLocationCoordinate2D(latitude: 10.723059, longitude: 106.7158508), zoom: 17, bearing: 0, viewingAngle: 0)
-    
+        
     }
-
+    
     // MARK: Location Delegate
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -50,18 +50,50 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
         self.mapView.clear()
         
         // Add a marker
+        
         let marker = GMSMarker(position: coordinate)
         marker.title = "Destination"
         marker.map = self.mapView
-
+        
+        // Show action sheet to ask for travel mode
+        let actionSheet = UIAlertController(title: "Travel mode", message: "Please choose your transportation mean", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        var travelMode = ""
+        
+        actionSheet.addAction(UIAlertAction(title: "Driving", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            travelMode = "driving"
+            self.drawRoutesByTravelMode(coordinate, travelMode: travelMode)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Walking", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            travelMode = "walking"
+            self.drawRoutesByTravelMode(coordinate, travelMode: travelMode)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Bicycling", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            travelMode = "bicycling"
+            self.drawRoutesByTravelMode(coordinate, travelMode: travelMode)
+        }))
+        
+        presentViewController(actionSheet, animated: true, completion: nil)
+        
+    }
+    
+    func drawRoutesByTravelMode(coordinate: CLLocationCoordinate2D, travelMode: String){
         // Draw Routes
         if let currentLocation = self.currentLocation{
-            self.googleDataProvider.directionFromLatLng(self.currentLocation!, destination: coordinate) { (status, success) -> Void in
+            self.googleDataProvider.directionFromLatLng(self.currentLocation!, destination: coordinate, travelMode: travelMode) { (status, success) -> Void in
+                // Show Duration and Distance
+                let distance = self.googleDataProvider.lookupData["distance"] as! String
+                let duration = self.googleDataProvider.lookupData["duration"] as! String
+                
+                self.lblInfo.text = "Distance \(distance), Duration \(duration)"
+                // Drawing
                 let polyline = GMSPolyline(path: GMSPath(fromEncodedPath: self.googleDataProvider.lookupData["points"] as! String))
                 polyline.map = self.mapView
             }
         }
     }
+    
     
     func didTapMyLocationButtonForMapView(mapView: GMSMapView!) -> Bool {
         locationManager.startUpdatingLocation()
@@ -101,7 +133,7 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         var tfPlace: UITextField?
         var tfDestination: UITextField?
-
+        
         alertController.addTextFieldWithConfigurationHandler { (place) -> Void in
             place.placeholder = "Origin"
             tfPlace = place
@@ -119,7 +151,7 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
         }
         
         let okAction = UIAlertAction(title: "OK", style: .Default) { action in
-
+            
             let from_address = tfPlace?.text
             let to_address = tfDestination?.text
             
@@ -133,7 +165,7 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
                 let location = CLLocationCoordinate2D(latitude: lat, longitude: lng)
                 self.mapView.camera = GMSCameraPosition(target: location, zoom: 15, bearing: 0, viewingAngle: 0)
             })
-
+            
             self.googleDataProvider.directionFromAddresses(from_address!, to_address: to_address!, completionHander: { (status, success) -> Void in
                 
                 println("Direction \(status)")
@@ -152,7 +184,7 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
                 
                 var line = GMSPolyline(path: GMSPath(fromEncodedPath: points))
                 line.map = self.mapView
-
+                
             })
         }
         
@@ -161,6 +193,6 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         
         presentViewController(alertController, animated: true, completion: nil)
-
+        
     }
 }

@@ -172,33 +172,37 @@ class GoogleDataProvider : NSObject {
         
     }
     
-    func directionFromLatLng(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D, completionHandler: ((status: String, success: Bool)->Void)){
+    func directionFromLatLng(origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D, travelMode: String, completionHandler: ((status: String, success: Bool)->Void)){
         
         let paramOrigin = origin.latitude.description + "," + origin.longitude.description
         let paramDestination = destination.latitude.description + "," + destination.longitude.description
         
         Alamofire.request(Alamofire.Method.GET, baseURLDirection, parameters: ["origin": paramOrigin,
-            "destination": paramDestination, "key": googleMapsServerKey], encoding: ParameterEncoding.URL)
-        .responseJSON(options: NSJSONReadingOptions.MutableLeaves) { (request, response, json, error) -> Void in
-            
-            if(error == nil){
-                let jsonObject = JSON(json!)
-                let status = jsonObject["status"].string
-                if ( status == "OK"){
-                    let routes = jsonObject["routes"][0]
-                    let points = routes["overview_polyline"]["points"].string
-                    
-                    self.lookupData = Dictionary<String, AnyObject>()
-                    self.lookupData["points"] = points
-
-                    completionHandler(status: status!, success: true)
-                }else{
-                    completionHandler(status: status!, success: false)
+            "destination": paramDestination, "key": googleMapsServerKey, "mode": travelMode], encoding: ParameterEncoding.URL)
+            .responseJSON(options: NSJSONReadingOptions.MutableLeaves) { (request, response, json, error) -> Void in
+                
+                if(error == nil){
+                    let jsonObject = JSON(json!)
+                    let status = jsonObject["status"].string
+                    if ( status == "OK"){                        
+                        let routes = jsonObject["routes"][0]
+                        let points = routes["overview_polyline"]["points"].string
+                        let distance = routes["legs"][0]["distance"]["text"].string
+                        let duration = routes["legs"][0]["duration"]["text"].string
+                        
+                        self.lookupData = Dictionary<String, AnyObject>()
+                        self.lookupData["points"] = points
+                        self.lookupData["distance"] = distance
+                        self.lookupData["duration"] = duration
+                        
+                        completionHandler(status: status!, success: true)
+                    }else{
+                        completionHandler(status: status!, success: false)
+                    }
                 }
-            }
         }
         
-
+        
         
     }
     
