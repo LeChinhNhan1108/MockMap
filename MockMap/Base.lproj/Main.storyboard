@@ -24,7 +24,7 @@
                                     <barButtonItem image="directions" id="mJK-6g-W4Q">
                                         <connections>
                                             <action selector="directionButtonDidTouch:" destination="vXZ-lx-hvc" id="aGY-6r-9pb"/>
-                                            <segue destination="ppd-Ys-Dna" kind="show" id="BRo-tN-iFs"/>
+                                            <segue destination="ppd-Ys-Dna" kind="show" identifier="GetDirectionFromAddress" id="BRo-tN-iFs"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cay-C5-I0Q"/>
@@ -199,7 +199,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Directions" id="XLa-px-Xoo"/>
+                    <navigationItem key="navigationItem" title="Directions" id="XLa-px-Xoo">
+                        <barButtonItem key="rightBarButtonItem" title="OK" id="2AV-Tn-zmm">
+                            <connections>
+                                <action selector="barBtnItemOKDidTouch:" destination="ppd-Ys-Dna" id="IFZ-Mw-J9B"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="destinationSearchBar" destination="fCM-P3-ERA" id="khN-Jk-Kp5"/>
                         <outlet property="originSearchBar" destination="HmV-ih-YtS" id="NnM-L8-y8C"/>

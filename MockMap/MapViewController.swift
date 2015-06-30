@@ -9,7 +9,7 @@
 import Foundation
 
 
-class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UITextFieldDelegate {
+class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UITextFieldDelegate, IBarButtonItemDidTouch {
     
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -18,6 +18,7 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
     let locationManager = CLLocationManager()
     let googleDataProvider = GoogleDataProvider()
     var currentLocation: CLLocationCoordinate2D?
+    
     
     override func viewDidLoad() {
         locationManager.requestWhenInUseAuthorization()
@@ -93,14 +94,14 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
             }
         }
     }
-    
-    
+   
     func didTapMyLocationButtonForMapView(mapView: GMSMapView!) -> Bool {
         locationManager.startUpdatingLocation()
         return false
     }
     
     // MARK: Button Touch
+    
     @IBAction func mapTypeButtonDidTouch(sender: UIBarButtonItem) {
         let actionSheet = UIAlertController(title: "Map Types", message: "Select map type:", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
@@ -169,8 +170,6 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
             
             self.googleDataProvider.directionFromAddresses(from_address!, to_address: to_address!, completionHander: { (status, success) -> Void in
                 
-                println("Direction \(status)")
-                
                 if (!success){
                     return
                 }
@@ -195,4 +194,52 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
         presentViewController(alertController, animated: true, completion: nil)
         
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "GetDirectionFromAddress" {
+            var vc = segue.destinationViewController as! DirectionSearchViewController
+            vc.iBarButtonItemDidTouch = self
+            
+        }
+    }
+    
+    func barButtonItemOKDidTouch(origin: String, destination: String) {
+
+        // Clear the map before drawing routes
+        self.mapView.clear()
+        
+        // Create a marker at the original address
+        self.googleDataProvider.geocodeAddress(origin, completionHander: { (status, success) -> Void in
+            
+            if success {
+                let lat = self.googleDataProvider.lookupData["lat"] as! Double
+                let lng = self.googleDataProvider.lookupData["lng"] as! Double
+                
+                let location = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+                self.mapView.camera = GMSCameraPosition(target: location, zoom: 15, bearing: 0, viewingAngle: 0)
+                
+                let marker = GMSMarker(position: location)
+                marker.title = origin
+                marker.map = self.mapView
+            }
+            
+        })
+        
+        // Draw direction path from origin to destination
+        self.googleDataProvider.directionFromAddresses(origin, to_address: destination) { (status, success) -> Void in
+            if success {
+                
+                let distance: AnyObject?  = self.googleDataProvider.lookupData["distance"] as! String
+                let duration: AnyObject?  = self.googleDataProvider.lookupData["duration"] as! String
+                let points  = self.googleDataProvider.lookupData["points"] as! String
+                
+                self.lblInfo.text = "Distance: \(distance as! String), Duration: \(duration as! String)"
+                
+                var line = GMSPolyline(path: GMSPath(fromEncodedPath: points))
+                line.map = self.mapView
+            }
+        }
+    }
+    
 }
