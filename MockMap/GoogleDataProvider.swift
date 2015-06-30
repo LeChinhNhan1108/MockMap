@@ -17,6 +17,8 @@ class GoogleDataProvider : NSObject {
     
     let baseURLGeocode = "https://maps.googleapis.com/maps/api/geocode/json?"
     let baseURLDirection = "https://maps.googleapis.com/maps/api/directions/json?"
+    let baseURLPlace = "https://maps.googleapis.com/maps/api/place/autocomplete/json?"
+    
     var lookupAddressResults: Dictionary<NSObject, AnyObject>!
     
     var lookupData: Dictionary<String, AnyObject>!
@@ -205,5 +207,74 @@ class GoogleDataProvider : NSObject {
         
         
     }
+    /*
+        This function uses NSArray as inout parameter.
+        1/ Swift uses pass by copy-restore mechanism for inout param.
+        2/ Array is a struct, not an object like NSArray
+        
+        (1,2) => Using Array as inout param wont work as expected
+    
+        SOL: 
+        - Using NSArray instead of Array
+        - Using Array with call-back
+    */
+    
+    /*
+    func placesAutocomplete(place: String, inout places: NSMutableArray, completionHandler: ((status: String, success: Bool)->Void)){
+        Alamofire.request(.GET, baseURLPlace, parameters: ["input": place, "types": "address", "key": googleMapsServerKey], encoding: ParameterEncoding.URL).responseJSON(options: NSJSONReadingOptions.MutableLeaves) { (request, response, json, error) -> Void in
+            
+            println("Place autocomplete enters")
+            
+            if (error == nil){
+                let jsonObject = JSON(json!)
+                let predictions: Array<JSON> = jsonObject["predictions"].arrayValue
+                for prediction in predictions {
+                    var description = prediction["description"].stringValue
+                    places.addObject(description)
+                    println("Add places")
+                }
+                completionHandler(status: "OK", success: true)
+            }else{
+                completionHandler(status: "", success: false)
+            }
+            
+            println("Place autocomplete returns")
+            
+        }
+    }*/
+
+    func placesAutocomplete(place: String, completionHandler: ((status: String, success: Bool, places: [String])->Void)){
+        Alamofire.request(.GET, baseURLPlace, parameters: ["input": place, "types": "address", "key": googleMapsServerKey], encoding: ParameterEncoding.URL).responseJSON(options: NSJSONReadingOptions.MutableLeaves) { (request, response, json, error) -> Void in
+            
+            println("Place autocomplete enters")
+            var places = [String]()
+            
+            if (error == nil){
+                let jsonObject = JSON(json!)
+                let predictions: Array<JSON> = jsonObject["predictions"].arrayValue
+                for prediction in predictions {
+                    var description = prediction["description"].stringValue
+                    places.append(description)
+                    println("Add places")
+                    println(places.count)
+                }
+                completionHandler(status: "OK", success: true, places: places)
+            }else{
+                completionHandler(status: "", success: false, places: places)
+            }
+            
+            println("Place autocomplete returns")
+            println(places.count)
+            
+        }
+    }
+    
+    
+
+    
+    
+    
+    
+    
     
 }

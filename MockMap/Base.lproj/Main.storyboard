@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cen-FR-lT9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cen-FR-lT9">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -23,6 +24,7 @@
                                     <barButtonItem image="directions" id="mJK-6g-W4Q">
                                         <connections>
                                             <action selector="directionButtonDidTouch:" destination="vXZ-lx-hvc" id="aGY-6r-9pb"/>
+                                            <segue destination="ppd-Ys-Dna" kind="show" id="BRo-tN-iFs"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cay-C5-I0Q"/>
@@ -50,7 +52,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDC-Dy-48I" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -119,6 +121,94 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1056" y="136"/>
+        </scene>
+        <!--Directions-->
+        <scene sceneID="D7g-EE-OZI">
+            <objects>
+                <viewController id="ppd-Ys-Dna" customClass="DirectionSearchViewController" customModule="MockMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QUK-jA-qrf"/>
+                        <viewControllerLayoutGuide type="bottom" id="nT5-5Z-l7f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VQs-Yi-Kg0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="HmV-ih-YtS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fCM-P3-ERA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="g2G-3V-Mcf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HmV-ih-YtS" secondAttribute="trailing" id="3N3-Qt-R1T"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g2G-3V-Mcf" secondAttribute="trailing" constant="-24" id="G4x-YR-AbI"/>
+                            <constraint firstItem="g2G-3V-Mcf" firstAttribute="leading" secondItem="fCM-P3-ERA" secondAttribute="leading" id="H2Z-wt-ZmE"/>
+                            <constraint firstItem="fCM-P3-ERA" firstAttribute="top" secondItem="HmV-ih-YtS" secondAttribute="bottom" id="HXa-dP-M4d"/>
+                            <constraint firstItem="g2G-3V-Mcf" firstAttribute="bottom" secondItem="nT5-5Z-l7f" secondAttribute="top" id="L0k-jb-VL5"/>
+                            <constraint firstItem="HmV-ih-YtS" firstAttribute="leading" secondItem="VQs-Yi-Kg0" secondAttribute="leading" id="V03-HA-qUl"/>
+                            <constraint firstItem="HmV-ih-YtS" firstAttribute="top" secondItem="QUK-jA-qrf" secondAttribute="bottom" id="c4K-yN-rXL"/>
+                            <constraint firstItem="fCM-P3-ERA" firstAttribute="trailing" secondItem="HmV-ih-YtS" secondAttribute="trailing" id="jeg-lL-6tJ"/>
+                            <constraint firstItem="g2G-3V-Mcf" firstAttribute="top" secondItem="fCM-P3-ERA" secondAttribute="bottom" id="u4G-3Q-pos"/>
+                            <constraint firstItem="fCM-P3-ERA" firstAttribute="leading" secondItem="HmV-ih-YtS" secondAttribute="leading" id="yLz-vC-KcU"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="HmV-ih-YtS"/>
+                                <exclude reference="fCM-P3-ERA"/>
+                                <exclude reference="g2G-3V-Mcf"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="3N3-Qt-R1T"/>
+                                <exclude reference="V03-HA-qUl"/>
+                                <exclude reference="c4K-yN-rXL"/>
+                                <exclude reference="HXa-dP-M4d"/>
+                                <exclude reference="jeg-lL-6tJ"/>
+                                <exclude reference="yLz-vC-KcU"/>
+                                <exclude reference="G4x-YR-AbI"/>
+                                <exclude reference="H2Z-wt-ZmE"/>
+                                <exclude reference="L0k-jb-VL5"/>
+                                <exclude reference="u4G-3Q-pos"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="HmV-ih-YtS"/>
+                                <include reference="fCM-P3-ERA"/>
+                                <include reference="g2G-3V-Mcf"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="3N3-Qt-R1T"/>
+                                <include reference="V03-HA-qUl"/>
+                                <include reference="c4K-yN-rXL"/>
+                                <include reference="HXa-dP-M4d"/>
+                                <include reference="jeg-lL-6tJ"/>
+                                <include reference="yLz-vC-KcU"/>
+                                <include reference="G4x-YR-AbI"/>
+                                <include reference="H2Z-wt-ZmE"/>
+                                <include reference="L0k-jb-VL5"/>
+                                <include reference="u4G-3Q-pos"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Directions" id="XLa-px-Xoo"/>
+                    <connections>
+                        <outlet property="destinationSearchBar" destination="fCM-P3-ERA" id="khN-Jk-Kp5"/>
+                        <outlet property="originSearchBar" destination="HmV-ih-YtS" id="NnM-L8-y8C"/>
+                        <outlet property="resultTableView" destination="g2G-3V-Mcf" id="Iut-nI-jcA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AmC-nE-Hqx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1746" y="136"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E7v-4k-xyz">

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52DDF8291B413C5400830A56 /* DirectionSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDF8281B413C5400830A56 /* DirectionSearchViewController.swift */; };
 		7D1CBA63CBF159CEAAEC79EC /* Pods_MockMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3C055C49BA0B4E4F6BF76F /* Pods_MockMap.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		94117B791B3C329500937FC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94117B781B3C329500937FC3 /* AppDelegate.swift */; };
 		94117B7E1B3C329500937FC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94117B7C1B3C329500937FC3 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		48B00E38CC7D096087BBD2E9 /* Pods-MockMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MockMap/Pods-MockMap.debug.xcconfig"; sourceTree = "<group>"; };
+		52DDF8281B413C5400830A56 /* DirectionSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionSearchViewController.swift; sourceTree = "<group>"; };
 		6B3C055C49BA0B4E4F6BF76F /* Pods_MockMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MockMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94117B731B3C329500937FC3 /* MockMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94117B771B3C329500937FC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				94117B781B3C329500937FC3 /* AppDelegate.swift */,
 				946ACE081B3C35CC00464F8C /* MapViewController.swift */,
 				946ACE0A1B3C3A8000464F8C /* GoogleDataProvider.swift */,
+				52DDF8281B413C5400830A56 /* DirectionSearchViewController.swift */,
 				94117B7C1B3C329500937FC3 /* Main.storyboard */,
 				94117B811B3C329500937FC3 /* LaunchScreen.xib */,
 				94117B761B3C329500937FC3 /* Supporting Files */,
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52DDF8291B413C5400830A56 /* DirectionSearchViewController.swift in Sources */,
 				94117B791B3C329500937FC3 /* AppDelegate.swift in Sources */,
 				946ACE0B1B3C3A8000464F8C /* GoogleDataProvider.swift in Sources */,
 				946ACE091B3C35CC00464F8C /* MapViewController.swift in Sources */,

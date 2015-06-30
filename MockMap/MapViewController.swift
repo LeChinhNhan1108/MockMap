@@ -9,7 +9,7 @@
 import Foundation
 
 
-class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UITextFieldDelegate {
     
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -133,18 +133,19 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         var tfPlace: UITextField?
         var tfDestination: UITextField?
-        
+
         alertController.addTextFieldWithConfigurationHandler { (place) -> Void in
             place.placeholder = "Origin"
             tfPlace = place
+            tfPlace?.delegate = self
         }
         
         alertController.addTextFieldWithConfigurationHandler { (destination) -> Void in
             destination.placeholder = "Destination"
             tfDestination = destination
-            
+            tfDestination?.delegate = self
         }
-        
+
         // Create the actions.
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { action in
             
@@ -190,7 +191,6 @@ class MapViewController : UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
-        
         
         presentViewController(alertController, animated: true, completion: nil)
         
